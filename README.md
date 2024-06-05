@@ -63,7 +63,7 @@ python test_STA_3D.py
 ```
 ## Other 💫
 
-If you want to experiement with STAResNet without retraining it, (some of) the pretrained models and datasets can be requested from the authors via ap2219 [at] cam [dot] ac [dot] uk 👨🏼‍🎤👩🏾‍🎤
+If you want to experiement with STAResNet without retraining it, most pretrained models and datasets can be requested from the authors via ap2219 [at] cam [dot] ac [dot] uk 👨🏼‍🎤👩🏾‍🎤
 
 
 
