@@ -1,24 +1,13 @@
-#  💫 STAResNet 💫: a Network in Spacetime Algebra to solve Maxwell's PDEs 
+
+#  💫 STAResNet 💫
+
 
 <p align="center">
-<img src="/figures/3Dslices.gif" width="700">
+<img src="/figures/3Dslices.gif" width="800">
 </p>
 
-Presented at the Applied Geometric Algebras in Computer Science and Engineering Conference (AGACSE) 2024 in Amsterdam, Netherlands.
 
-## Intro 💫
-
-<p align="center">
-<img src="/figures/3D.gif" width="700">
-</p>
-
-A same set of PDEs can be expressed in different algebras. We focus on Maxwell's PDEs, which can be formulated in 2D and 3D GA (for the 2D and 3D case), but also in 3D and 4D 
-**Spacetime Algebra (STA)**. It is known in the literature that a STA formulation of Maxwell's PDEs is much more compact and elegant, as well as easier to compute (Lasenby, 2020). We demonstrated how this holds true also for **Clifford Algebra Networks** that work with STA multivectors as opposed to vanilla GA. 
-
-STAResNet is our own ResNet-like Clifford Algebra Network that represents inputs, weights and biases as STA multivectors. We showed how solving Maxwell's PDEs via our STAResNet outperforms Clifford ResNet (Brandstetter et al., 2022) which works in 3D GA.
-
-
-
+Presented at the **Applied Geometric Algebras in Computer Science and Engineering Conference (AGACSE) 2024** in Amsterdam, Netherlands.
 
 ## Achievements 💫
 
@@ -26,18 +15,24 @@ STAResNet is our own ResNet-like Clifford Algebra Network that represents inputs
 - 🌟 Implemented 3D convolutional layers for *any* algebra of *any* dimension in TensorFlow
 - 🌟 Implemented a network working *exclusively* with objects in Spacetime Algebra
 - 🌟 Demonstrated how STAResNet solves PDEs more accurately than Clifford ResNet both in 2D and 3D space
-- 🌟 Showed how STAResNet is more resilient in presence of obstacles, either seen or unseen
-- 🌟 Achieved up to 2.6 lower MSE error between GT and esitmated fields with 6 times fewer trainable parameters as opposed to 
+- 🌟 Showed how STAResNet is more resilient in presence of obstacles, either previously seen or unseen
+- 🌟 Achieved up to 2.6 lower MSE error between GT and esitmated fields with 6 times fewer trainable parameters as opposed to 2D Clifford ResNet
 
-We can conclude that choice of the algebra, when implementing Clifford Networks, is key for more lightweight, descriptive and accurate networks that are grounded in the physics of the problem and represent a more natural parametrisation of the chosen problem.
+We can conclude that the choice of the correct algebra, when implementing Clifford Networks, is key for more lightweight, descriptive and accurate networks that are grounded in physics and represent a more natural parametrisation for the chosen problem.
+
+
+## Background 💫
+
+A same set of PDEs can be expressed in different algebras. We focus on Maxwell's PDEs, which can be formulated in vanilla GA but also in **Spacetime Algebra (STA)**. An STA formulation of Maxwell's PDEs is not only more compact and elegant as opposed to vanilla GA, but also easier to compute (Lasenby, 2020). We demonstrated how this holds true also when PDEs are computed through learned methods, such as **Clifford Algebra Networks**, when they operate with STA multivectors as opposed to vanilla GA ones. 
+
+💫 **STAResNet** 💫 is our own ResNet-like Clifford Algebra Network that represents inputs, weights and biases as STA multivectors. We showed how solving Maxwell's PDEs via STAResNet outperforms Clifford ResNet (Brandstetter et al., 2022), which works in 3D GA instead.
+
+<p align="center">
+<img src="/figures/3D.gif" width="600">
+</p>
 
 
 ## Requirements 💫
-
-<p align="center">
-<img src="/figures/2D2.gif" width="700">
-</p>
-
 
 STAResNet requires the following:
 
@@ -46,15 +41,31 @@ STAResNet requires the following:
 - tfga
 - clifford
 
+<p align="center">
+<img src="/figures/2D2.gif" width="600">
+</p>
+
 ## How to run 💫
 
+3 steps required required. The example below is for STAResNet for 3D EM fields, but other combinations follow the same approach.
+
+1. 🌟 generate data:
 ```
 python datagen3D.py
 ```
+2. 🌟 train:
+```
+python maxwell_STA_3D.py
+```
+3. 🌟 test:
+```
+python test_STA_3D.py
+```
+## Other 💫
 
-```
-python GAmaxwell3D.py
-```
+If you want to experiement with STAResNet without retraining it, (some of) the pretrained models and datasets can be requested to the author via ap2219 [at] cam [dot] ac [dot] uk 👨🏼‍🎤👩🏾‍🎤
+
+
 
 
 
