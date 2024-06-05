@@ -7,7 +7,7 @@
 </p>
 
 
-Presented at the **Applied Geometric Algebras in Computer Science and Engineering Conference (AGACSE) 2024** in Amsterdam, Netherlands.
+Presented with the title "STAResNet: a Network in Spacetime Algebra to solve Maxwell's PDEs" at the 9th  **Applied Geometric Algebras in Computer Science and Engineering Conference (AGACSE)** in Amsterdam, Netherlands, in August 2024.
 
 ## Achievements 💫
 
