@@ -100,7 +100,7 @@ class ShallowWaterWeather(PDEConfig):
 
 
 @dataclass
-class Maxwell3D(PDEConfig):
+class Maxwell2D(PDEConfig):
     wavelength: float = 1.0e-5
     sol: float = 299_792_458.0
     amplitude: float = 1.0
@@ -128,6 +128,40 @@ class Maxwell3D(PDEConfig):
     @property
     def spatial_grid_size(self):
         return (self.n, self.n, 1)
+
+    @property
+    def grid_spacing(self):
+        return self.L / self.n_large
+
+@dataclass
+class Maxwell3D(PDEConfig):
+    wavelength: float = 1.0e-5
+    sol: float = 299_792_458.0
+    amplitude: float = 1.0
+    permittivity: float = 10.0
+    permeability: float = 1.0
+    L: float = 3.2e-5
+    n: int = 32
+    n_large: int = 64
+    nt: int = 12
+    skip_nt: int = 250
+    sample_rate: int = 15
+    device: str = "cpu"
+
+    def __repr__(self):
+        return "Maxwell3D"
+
+    @property
+    def trajlen(self):
+        return self.nt
+
+    @property
+    def grid_size(self):
+        return (self.nt, self.n, self.n, self.n)
+
+    @property
+    def spatial_grid_size(self):
+        return (self.n, self.n, self.n)
 
     @property
     def grid_spacing(self):

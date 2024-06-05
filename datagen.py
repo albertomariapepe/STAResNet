@@ -181,34 +181,34 @@ def generate_trajectories_maxwell(
     print()
     h5f.close()
 
-max = Maxwell3D(nt = 12, sample_rate = 50)
-max2 = Maxwell3D(nt = 12, sample_rate = 50)
-max3 = Maxwell3D(nt = 12, sample_rate = 50)
+max1 = Maxwell3D(nt = 12, n = 28, n_large = 56, sample_rate = 8)
+max2 = Maxwell3D(nt = 12,n = 28, n_large = 56, sample_rate = 8)
+max3 = Maxwell3D(nt = 12, n = 28, n_large = 56, sample_rate = 8)
 
 
-for i in range(1, 2500 // 32):
+for i in range(1000 // 32):
     generate_trajectories_maxwell(
-        pde = max,
+        pde = max1,
         mode = "train",
         num_samples = 32,
-        dirname  = "drive/MyDrive/maxwell/data_train",
+        dirname  = "data_train3D_10s",
         n_parallel = 1,
-        seed = i)
+        seed = i+900)
 
-for i in range(8, 250 // 32):
+for i in range(250 // 32):
     generate_trajectories_maxwell(
         pde = max2,
         mode = "val",
         num_samples = 32,
-        dirname  = "drive/MyDrive/maxwell/data_val",
+        dirname  = "data_val3D_10s",
         n_parallel = 1,
-        seed = i+400)
+        seed = i)
   
-for i in range(4, 200 // 32):
+for i in range(250 // 32):
     generate_trajectories_maxwell(
         pde = max3,
         mode = "test",
         num_samples = 32,
-        dirname  = "drive/MyDrive/maxwell/data_test",
+        dirname  = "data_test3D_10s",
         n_parallel = 1,
-        seed = i+1000)
+        seed = i+500)

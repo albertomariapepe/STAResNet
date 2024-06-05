@@ -4,14 +4,14 @@ This contains the custom layers implemented using tfga infrastructure.
 from typing import List, Union
 
 import tensorflow as tf
-from keras import (activations, constraints, initializers, layers,
+from tensorflow.keras import (activations, constraints, initializers, layers,
                               regularizers)
-from keras.utils import register_keras_serializable
+#from keras.utils import register_keras_serializable
 
 from tfga.blades import BladeKind
 from tfga.layers import GeometricAlgebraLayer
 from tfga.tfga import GeometricAlgebra
-from keras.layers import Conv3D
+from tensorflow.keras.layers import Conv3D
 
 
 
@@ -162,6 +162,7 @@ class RotorConv2D(GeometricAlgebraLayer):
         kernel_size = k_blade_values.shape[0]
 
         a_batch_shape = tf.shape(a_blade_values)[:-4]
+
 
         # Reshape a_blade_values to a 2d image (since that's what the tf op expects)
         # [*, S, S, CI*BI]
@@ -391,23 +392,31 @@ class RotorConv3D(GeometricAlgebraLayer):
 
         kernel_size = k_blade_values.shape[0]
 
+        #print("a_blade_values:", a_blade_values.shape)
         a_batch_shape = tf.shape(a_blade_values)[:-5]
 
-        #print("a_batch shape:", a_batch_shape)
+        #print(tf.shape(a_blade_values))
 
         # Reshape a_blade_values to a 3d image (since that's what the tf op expects)
         # [*, S, S, S, CI*BI]
+
+        #print("a_batch_shape:", a_batch_shape.shape)
         a_image_shape = tf.concat(
             [
                 a_batch_shape,
-                tf.shape(a_blade_values)[-5:-3],
-                [tf.shape(a_blade_values)[-3], tf.reduce_prod(tf.shape(a_blade_values)[-2:])],
+                tf.shape(a_blade_values)[-5:-2],
+                [tf.math.reduce_prod(tf.shape(a_blade_values)[-2:])],
             ],
             axis=0,
         )
-        
+
+   
+        #print(tf.math.reduce_prod(tf.shape(a_blade_values)[-2:]))
+        #print("a_image_shape:", a_image_shape)
 
         a_image = tf.reshape(a_blade_values, a_image_shape)
+        #print("a_image:", a_image.shape)
+
 
         sizes = [1, kernel_size, kernel_size, kernel_size, 1]
         strides = [1, stride_vertical, stride_horizontal, stride_depth, 1]
@@ -415,26 +424,10 @@ class RotorConv3D(GeometricAlgebraLayer):
         # [*, P1, P2, P3, K*K*K*CI*BI] where eg. number of patches P = S * K for
         # stride=1 and "SAME", (S-K+1) * K for "VALID", ...
 
-        #print("a_image shape:", a_image.shape)
+    
         a_slices = tf.extract_volume_patches(
             a_image, ksizes=sizes, strides=strides, padding=padding
-        )
-
-        #print(a_slices.shape)
-
-
-        '''
-        sizes = [1, kernel_size, kernel_size*kernel_size, 1]
-        strides = [1, stride_vertical, stride_horizontal*stride_depth, 1]
-
-        # [*, P1, P2, P3, K*K*K*CI*BI] where eg. number of patches P = S * K for
-        # stride=1 and "SAME", (S-K+1) * K for "VALID", ...
-
-        #print(a_image.shape)
-        a_slices = tf.image.extract_patches(
-            a_image, sizes=sizes, strides=strides, rates=[1, 1, 1, 1], padding=padding
-        )
-        '''
+        )        
 
         # [..., P1, P2, P3, K, K, K, CI, BI]
         out_shape = tf.concat(
@@ -451,6 +444,8 @@ class RotorConv3D(GeometricAlgebraLayer):
 
         a_slices = tf.reshape(a_slices, out_shape)
 
+        #print(a_slices.shape)
+
         #print("output_shape", a_slices.shape)
 
         # no-sandwich product convolution:
@@ -462,10 +457,21 @@ class RotorConv3D(GeometricAlgebraLayer):
 
         # sandwich product adds additional cayley matrix, otherwise dimensions correspond; thus just need to add extra
         # dimension from 1d case to all kernel elements to maintain correspondence
+        
         x = tf.einsum("...bmqcf,...bmqcfi,hij,...anlbmqcd,qbmcfg,gdh->...anlfj", weights,
                       self.algebra.reversion(k_blade_values), self.algebra._cayley, a_slices, k_blade_values,
                       self.algebra._cayley)
+        '''
+        term1 = tf.matmul(weights[..., tf.newaxis], self.algebra.reversion(k_blade_values)[..., tf.newaxis], transpose_b=True)
+        term2 = tf.matmul(self.algebra._cayley[..., tf.newaxis], a_slices[..., tf.newaxis])
+        term3 = tf.matmul(k_blade_values[..., tf.newaxis], self.algebra._cayley[..., tf.newaxis])
 
+        # Perform element-wise multiplication
+        elementwise_mult = term1 * term2 * term3
+
+        # Sum along appropriate axes
+        x = tf.reduce_sum(elementwise_mult, axis=[2, 3, 4, 5])
+        '''
         return x
 
     def call(self, inputs):
