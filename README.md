@@ -9,6 +9,16 @@
 
 Presented with the title "STAResNet: a Network in Spacetime Algebra to solve Maxwell's PDEs" at the 9th  **Applied Geometric Algebras in Computer Science and Engineering Conference (AGACSE)** in Amsterdam, Netherlands, in August 2024.
 
+
+## Background 💫
+
+A same set of PDEs can be expressed in different algebras. We focus on Maxwell's PDEs, which can be formulated in vanilla GA but also in **Spacetime Algebra (STA)**. An STA formulation of Maxwell's PDEs is not only more compact and elegant as opposed to vanilla GA, but also easier to compute (Lasenby, 2020). We demonstrated how this holds true also when PDEs are computed through learned methods, such as **Clifford Algebra Networks**, when they operate with STA multivectors as opposed to vanilla GA ones. 
+
+💫 **STAResNet** 💫 is our own ResNet-like Clifford Algebra Network that represents inputs, weights and biases as STA multivectors. We showed how solving Maxwell's PDEs via STAResNet outperforms Clifford ResNet (Brandstetter et al., 2022), which works in vanilla GA instead.
+
+
+
+
 ## Achievements 💫
 
 - 🌟 Extended experiments of Brandstetter et al. on Maxwell's PDEs to the 2D case
@@ -19,13 +29,6 @@ Presented with the title "STAResNet: a Network in Spacetime Algebra to solve Max
 - 🌟 Achieved up to 2.6 lower MSE error between GT and esitmated fields with 6 times fewer trainable parameters as opposed to 2D Clifford ResNet
 
 We can conclude that the choice of the correct algebra, when implementing Clifford Networks, is key for more lightweight, descriptive and accurate networks that are grounded in physics and represent a more natural parametrisation for the chosen problem.
-
-
-## Background 💫
-
-A same set of PDEs can be expressed in different algebras. We focus on Maxwell's PDEs, which can be formulated in vanilla GA but also in **Spacetime Algebra (STA)**. An STA formulation of Maxwell's PDEs is not only more compact and elegant as opposed to vanilla GA, but also easier to compute (Lasenby, 2020). We demonstrated how this holds true also when PDEs are computed through learned methods, such as **Clifford Algebra Networks**, when they operate with STA multivectors as opposed to vanilla GA ones. 
-
-💫 **STAResNet** 💫 is our own ResNet-like Clifford Algebra Network that represents inputs, weights and biases as STA multivectors. We showed how solving Maxwell's PDEs via STAResNet outperforms Clifford ResNet (Brandstetter et al., 2022), which works in 3D GA instead.
 
 <p align="center">
 <img src="/figures/3D.gif" width="600">
