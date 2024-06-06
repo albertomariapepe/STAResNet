@@ -65,9 +65,9 @@ python test_STA_3D.py
 
 If you want to experiement with STAResNet without retraining it, most pretrained models and datasets can be requested from the authors via ap2219 [at] cam [dot] ac [dot] uk 👨🏼‍🎤👩🏾‍🎤
 
+## Acknowledgements 💫
 
-
-
+The original scripts `pde.py` and `datagen.py` have been written by Brandstetter et al. (2022). The script `layers.py` has been expanded from that of Christian Hockey. 
 
 
 
