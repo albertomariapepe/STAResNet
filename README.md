@@ -3,7 +3,7 @@
 
 
 <p align="center">
-<img src="/figures/3Dslices.gif" width="800">
+<img src="/figures/3Dslices.gif" width="900">
 </p>
 
 
@@ -50,7 +50,7 @@ STAResNet requires the following:
 
 ## How to run 💫
 
-3 steps required required. The example below is for STAResNet for 3D EM fields, but other combinations follow the same approach.
+3 steps required. The example below is for STAResNet for 3D EM fields, but other combinations follow the same approach.
 
 1. 🌟 generate data:
 ```
