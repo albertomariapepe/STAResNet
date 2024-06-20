@@ -21,12 +21,12 @@ A same set of PDEs can be expressed in different algebras. We focus on Maxwell's
 
 ## Achievements 💫
 
-- 🌟 Extended experiments of Brandstetter et al. on Maxwell's PDEs to the 2D case
-- 🌟 Implemented 3D convolutional layers for *any* algebra of *any* dimension in TensorFlow
-- 🌟 Implemented a network working *exclusively* with objects in Spacetime Algebra
-- 🌟 Demonstrated how STAResNet solves PDEs more accurately than Clifford ResNet both in 2D and 3D space
-- 🌟 Showed how STAResNet is more resilient in presence of obstacles, either previously seen or unseen
-- 🌟 Achieved up to 2.6 lower MSE error between GT and esitmated fields with 6 times fewer trainable parameters as opposed to 2D Clifford ResNet
+- Extended experiments of Brandstetter et al. on Maxwell's PDEs to the 2D case
+- Implemented 3D convolutional layers for *any* algebra of *any* dimension in TensorFlow
+- Implemented a network working *exclusively* with objects in Spacetime Algebra
+- Demonstrated how STAResNet solves PDEs more accurately than Clifford ResNet both in 2D and 3D space
+- Showed how STAResNet is more resilient in presence of obstacles, either previously seen or unseen
+- Achieved up to 2.6 lower MSE error between GT and esitmated fields with 6 times fewer trainable parameters as opposed to 2D Clifford ResNet
 
 We can conclude that the choice of the correct algebra, when implementing Clifford Networks, is key for more lightweight, descriptive and accurate networks that are grounded in physics and represent a more natural parametrisation for the chosen problem.
 
@@ -52,15 +52,15 @@ STAResNet requires the following:
 
 3 steps required. The example below is for STAResNet for 3D EM fields, but other combinations follow the same approach.
 
-1. 🌟 generate data:
+1. generate data:
 ```
 python datagen3D.py
 ```
-2. 🌟 train:
+2. train:
 ```
 python maxwell_STA_3D.py
 ```
-3. 🌟 test:
+3. test:
 ```
 python test_STA_3D.py
 ```
