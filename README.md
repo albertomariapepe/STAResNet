@@ -1,5 +1,5 @@
 
-#  🌟🪐💫 STAResNet 💫🪐🌟
+#  💫 STAResNet 
 
 
 <p align="center">
