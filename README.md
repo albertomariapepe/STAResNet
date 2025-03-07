@@ -64,6 +64,20 @@ python maxwell_STA_3D.py
 ```
 python test_STA_3D.py
 ```
+
+## How to cite 💫
+
+If you are referencing **STAResNet** in your work, please cite the following:
+
+```bibtex
+@article{pepe2024staresnet,
+  title={STAResNet: a Network in Spacetime Algebra to solve Maxwell's PDEs},
+  author={Pepe, Alberto and Buchholz, Sven and Lasenby, Joan},
+  journal={arXiv preprint arXiv:2408.13619},
+  year={2024}
+}
+```
+
 ## Other 💫
 
 If you want to experiement with STAResNet without retraining it, most pretrained models and datasets can be requested from the authors via ap2219 [at] cam [dot] ac [dot] uk 👨🏼‍🎤👩🏾‍🎤
@@ -71,7 +85,3 @@ If you want to experiement with STAResNet without retraining it, most pretrained
 ## Acknowledgements 💫
 
 The original scripts `pde.py` and `datagen.py` have been written by Brandstetter et al. (2022). The script `layers.py` has been expanded from that of Christian Hockey. 
-
-
-
-
